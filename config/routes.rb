@@ -55,11 +55,6 @@ Rails.application.routes.draw do
   get "pricing", to: "page#pricing"
   get "changelog", to: "page#changelog"
 
-  #Teams
-  namespace :team do 
-    resources :name, only: [:index, :show, :edit]
-  end 
-
   # Blog
   namespace :blog do
     resources :tags, only: [:index, :show]

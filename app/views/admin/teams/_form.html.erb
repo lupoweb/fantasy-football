@@ -1,0 +1,44 @@
+<% triggered_validation = !!local_assigns[:triggered_validation] || !!params[:triggered_validation] %>
+<% errors_h = @team.errors.to_hash %>
+
+<%= form_with(model: [:admin, team]) do |form| %>
+
+    <div class="form-group mb-1">
+      <% is_valid_name = triggered_validation && errors_h[:name].blank? && @team.name.present?  %>
+      <% is_invalid_name = !!errors_h[:name]  %>
+      <%= form.label "name-input", 'name *', class: "mb-0 fw-600" %>
+      <small id="hint_id_name" class="form-text text-muted d-block my-0">
+        Required - a private, short, unique, alphanumeric name that will help to recognize this tag through the application.
+      </small>
+      <%= form.text_field 'name', 
+            value: @team.name, 
+            id: "name-input", 
+            class: "form-control #{"is-invalid" if is_invalid_name} #{"is-valid" if is_valid_name}", aria: ({ invalid: is_invalid_name, describedby: "name_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:name][0], class: "invalid-feedback", id: "name_message") if errors_h[:name].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "name_message") if (is_valid_name)  %>
+    </div>
+
+    <div class="form-group mb-1">
+      <% is_valid_owner = triggered_validation && errors_h[:owner].blank? && @team.owner.present?  %>
+      <% is_invalid_owner = !!errors_h[:owner]  %>
+      <%= form.label "owner-input", 'owner *', class: "mb-0 fw-600" %>
+      <small id="hint_id_owner" class="form-text text-muted d-block my-0">
+        Required - a private, short, unique, alphanumeric owner that will help to recognize this tag through the application.
+      </small>
+      <%= form.text_field 'owner', 
+            value: @team.owner, 
+            id: "owner-input", 
+            class: "form-control #{"is-valid" if is_valid_owner}", aria: ({ invalid: is_invalid_owner, describedby: "owner_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:owner][0], class: "invalid-feedback", id: "owner_message") if errors_h[:owner].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "owner_message") if (is_valid_owner)  %>
+    </div>
+
+  <div class="justify-content-between">
+    <div class="my-4">
+      <%= form.submit class: 'btn btn-primary btn btn-dark btn-sm px-2 me-2' %>
+      <%= link_to 'Back', admin_teams_path, class: "btn bg-white btn-sm px-2" %>
+    </div>
+  </div>
+
+<% end %>
+
