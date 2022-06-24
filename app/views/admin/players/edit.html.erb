@@ -2,14 +2,14 @@
   <div class="row mb-3">
     <div class="col-12 col-lg-5 justify-content-start align-items-start mb-lg-2">
       <h3 class="mb-2 mb-lg-0 fw-bold truncate ">
-        Editing Teams
+        Editing Players
       </h3>
     </div>
     <div class="col-12 col-lg-auto flex-1 ms-auto justify-content-center align-items-end mb-lg-2">
-      <%= render 'actions', being: 'edit', team: @team %>
+      <%= render 'actions', being: 'edit', player: @player %>
     </div>
   </div>
   <div class="card p-3 p-lg-4 flex-column justify-content-center align-items-between mb-2">
-    <%= render 'form', team: @team, triggered_validation: local_assigns[:triggered_validation] %>
+    <%= render 'form', player: @player, triggered_validation: local_assigns[:triggered_validation] %>
   </div>
 </div>

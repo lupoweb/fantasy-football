@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :teams
-
   # Sitemap
   get '/sitemap.xml' => 'sitemaps#index', defaults: { format: 'xml' }
 
@@ -25,6 +23,7 @@ Rails.application.routes.draw do
     resources :editables
     resources :tags
     resources :teams
+    resources :players
     # Settings accessible to non-techies
     resources :settings, only: [:index, :update]
     # Home page of the admin

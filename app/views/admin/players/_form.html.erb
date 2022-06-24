@@ -1,0 +1,92 @@
+<% triggered_validation = !!local_assigns[:triggered_validation] || !!params[:triggered_validation] %>
+<% errors_h = @player.errors.to_hash %>
+
+<%= form_with(model: [:admin, player]) do |form| %>
+    <!--name-->
+    <div class="form-group mb-1">
+      <% is_valid_name = triggered_validation && errors_h[:name].blank? && @player.name.present?  %>
+      <% is_invalid_name = !!errors_h[:name]  %>
+      <%= form.label "name-input", 'name *', class: "mb-0 fw-600" %>
+      <small id="hint_id_name" class="form-text text-muted d-block my-0">
+        Required - a private, short, unique, alphanumeric name that will help to recognize this tag through the application.
+      </small>
+      <%= form.text_field 'name', 
+            value: @player.name, 
+            id: "name-input", 
+            class: "form-control #{"is-invalid" if is_invalid_name} #{"is-valid" if is_valid_name}", aria: ({ invalid: is_invalid_name, describedby: "name_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:name][0], class: "invalid-feedback", id: "name_message") if errors_h[:name].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "name_message") if (is_valid_name)  %>
+    </div>
+    <!--role-->
+
+    <div class="form-group mb-1">
+      <% is_valid_role = triggered_validation && errors_h[:role].blank? && @player.role.present?  %>
+      <% is_invalid_role = !!errors_h[:role]  %>
+      <%= form.label "role-input", 'role *', class: "mb-0 fw-600" %>
+      <small id="hint_id_role" class="form-text text-muted d-block my-0">
+        Required - a private, short, unique, alphanumeric role that will help to recognize this tag through the application.
+      </small>
+      <%= form.text_field 'role', 
+            value: @player.role, 
+            id: "role-input", 
+            class: "form-control #{"is-invalid" if is_invalid_role} #{"is-valid" if is_valid_role}", aria: ({ invalid: is_invalid_role, describedby: "role_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:role][0], class: "invalid-feedback", id: "role_message") if errors_h[:role].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "role_message") if (is_valid_role)  %>
+    </div>    
+    <!--initial_quote-->
+    <div class="form-group mb-1">
+      <% is_valid_initial_quote = triggered_validation && errors_h[:initial_quote].blank? && @player.initial_quote.present?  %>
+      <% is_invalid_initial_quote = !!errors_h[:initial_quote]  %>
+      <%= form.label "initial_quote-input", 'initial_quote *', class: "mb-0 fw-600" %>
+      <small id="hint_id_initial_quote" class="form-text text-muted d-block my-0">
+        Required - a private, short, unique, alphanumeric initial_quote that will help to recognize this tag through the application.
+      </small>
+      <%= form.text_field 'initial_quote', 
+            value: @player.initial_quote, 
+            id: "initial_quote-input", 
+            class: "form-control #{"is-valid" if is_valid_initial_quote}", aria: ({ invalid: is_invalid_initial_quote, describedby: "initial_quote_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:initial_quote][0], class: "invalid-feedback", id: "initial_quote_message") if errors_h[:initial_quote].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "initial_quote_message") if (is_valid_initial_quote)  %>
+    </div>
+
+    <!--actual_quote-->
+    <div class="form-group mb-1">
+      <% is_valid_actual_quote = triggered_validation && errors_h[:actual_quote].blank? && @player.actual_quote.present?  %>
+      <% is_invalid_actual_quote = !!errors_h[:actual_quote]  %>
+      <%= form.label "actual_quote-input", 'actual_quote *', class: "mb-0 fw-600" %>
+      <small id="hint_id_actual_quote" class="form-text text-muted d-block my-0">
+        Required - a private, short, unique, alphanumeric actual_quote that will help to recognize this tag through the application.
+      </small>
+      <%= form.text_field 'actual_quote', 
+            value: @player.actual_quote, 
+            id: "actual_quote-input", 
+            class: "form-control #{"is-valid" if is_valid_actual_quote}", aria: ({ invalid: is_invalid_actual_quote, describedby: "actual_quote_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:actual_quote][0], class: "invalid-feedback", id: "actual_quote_message") if errors_h[:actual_quote].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "actual_quote_message") if (is_valid_actual_quote)  %>
+    </div>
+
+    <!--serie a team-->
+    <div class="form-group mb-1">
+      <% is_valid_serie_a_team = triggered_validation && errors_h[:serie_a_team].blank? && @player.serie_a_team.present?  %>
+      <% is_invalid_serie_a_team = !!errors_h[:serie_a_team]  %>
+      <%= form.label "serie_a_team-input", 'serie_a_team *', class: "mb-0 fw-600" %>
+      <small id="hint_id_serie_a_team" class="form-text text-muted d-block my-0">
+        Required - a private, short, unique, alphanumeric serie_a_team that will help to recognize this tag through the application.
+      </small>
+      <%= form.text_field 'serie_a_team', 
+            value: @player.serie_a_team, 
+            id: "serie_a_team-input", 
+            class: "form-control #{"is-valid" if is_valid_serie_a_team}", aria: ({ invalid: is_invalid_serie_a_team, describedby: "serie_a_team_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:serie_a_team][0], class: "invalid-feedback", id: "serie_a_team_message") if errors_h[:serie_a_team].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "serie_a_team_message") if (is_valid_serie_a_team)  %>
+    </div>
+
+  <div class="justify-content-between">
+    <div class="my-4">
+      <%= form.submit class: 'btn btn-primary btn btn-dark btn-sm px-2 me-2' %>
+      <%= link_to 'Back', admin_players_path, class: "btn bg-white btn-sm px-2" %>
+    </div>
+  </div>
+
+<% end %>
+
