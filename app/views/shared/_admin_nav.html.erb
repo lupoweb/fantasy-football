@@ -2,9 +2,9 @@
   <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 text-white min-vh-100">
     <div class="dropdown mb-1">
       
-      <%= image_tag "Logo-Fantacalcio.png", style: 'height:36; width:36px;' %>
+      <%= image_tag "Logo-Fantacalcio.png", style: 'height:36; width:36px; margin-right: 0px;' %>
       <!--<svg width="26px" height="26px" viewBox="0 0 102 102" version="1.1"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="rubyshape2"> <rect id="Rectangle" stroke="#979797" fill="#FFFFFF" x="0.5" y="0.5" width="101" height="101" rx="13"></rect> <polygon id="railslike" stroke="#000000" fill="#1E2029" fill-rule="nonzero" transform="translate(51.500000, 51.000000) rotate(-180.000000) translate(-51.500000, -51.000000) " points="51.5 24 81 61.6835734 69.7320027 78 33.2679973 78 22 61.6835734"></polygon> </g> </g> </svg>-->
-      <span class="d-none d-sm-inline mx-1 fw-700 ms-2 text-white">FantaBaretto</span>
+      <span class="d-none d-sm-inline mx-1 fw-700 ms-1 text-white" style="margin-left: 0px"> antaBaretto</span>
     
       <!--<ul class="dropdown-menu dropdown-menu-dark fs-small shadow">
         <li><a class="dropdown-item" href="/">Back to app</a></li>
@@ -32,26 +32,5 @@
         </a>
       </li>
     </ul>
-    <hr class="w-100" style="height:2px; color:grey;">
-    <div class="dropdown mb-3">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="ms-2 fw-600 d-none d-sm-inline mx-1"><%= current_account.profile.name %></span>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark fs-small shadow">
-        <li><a class="dropdown-item" href="/admin/settings">Settings</a></li>
-        <li><a class="dropdown-item" href="/profile">Profile</a></li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
-        <li>
-          <%= form_with url: rodauth.logout_path, method: :post, data: { turbo: false } do |form| %>
-            <%= form.submit rodauth.logout_button, class: "dropdown-item" %>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-    <a href="mailto:<%=ENV['APP_EMAIL_HELP']%>?subject=Help" class="nav-link align-middle px-0 pt-0 pb-4">
-      <span class="ms-2 fw-600 d-none d-sm-inline">Help</span>
-    </a>
   </div>
 </nav>

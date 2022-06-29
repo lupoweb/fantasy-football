@@ -8,7 +8,6 @@
       <% is_invalid_name = !!errors_h[:name]  %>
       <%= form.label "name-input", 'name *', class: "mb-0 fw-600" %>
       <small id="hint_id_name" class="form-text text-muted d-block my-0">
-        Required - a private, short, unique, alphanumeric name that will help to recognize this tag through the application.
       </small>
       <%= form.text_field 'name', 
             value: @player.name, 
@@ -24,7 +23,6 @@
       <% is_invalid_role = !!errors_h[:role]  %>
       <%= form.label "role-input", 'role *', class: "mb-0 fw-600" %>
       <small id="hint_id_role" class="form-text text-muted d-block my-0">
-        Required - a private, short, unique, alphanumeric role that will help to recognize this tag through the application.
       </small>
       <%= form.text_field 'role', 
             value: @player.role, 
@@ -39,7 +37,6 @@
       <% is_invalid_initial_quote = !!errors_h[:initial_quote]  %>
       <%= form.label "initial_quote-input", 'initial_quote *', class: "mb-0 fw-600" %>
       <small id="hint_id_initial_quote" class="form-text text-muted d-block my-0">
-        Required - a private, short, unique, alphanumeric initial_quote that will help to recognize this tag through the application.
       </small>
       <%= form.text_field 'initial_quote', 
             value: @player.initial_quote, 
@@ -55,7 +52,6 @@
       <% is_invalid_actual_quote = !!errors_h[:actual_quote]  %>
       <%= form.label "actual_quote-input", 'actual_quote *', class: "mb-0 fw-600" %>
       <small id="hint_id_actual_quote" class="form-text text-muted d-block my-0">
-        Required - a private, short, unique, alphanumeric actual_quote that will help to recognize this tag through the application.
       </small>
       <%= form.text_field 'actual_quote', 
             value: @player.actual_quote, 
@@ -71,7 +67,6 @@
       <% is_invalid_serie_a_team = !!errors_h[:serie_a_team]  %>
       <%= form.label "serie_a_team-input", 'serie_a_team *', class: "mb-0 fw-600" %>
       <small id="hint_id_serie_a_team" class="form-text text-muted d-block my-0">
-        Required - a private, short, unique, alphanumeric serie_a_team that will help to recognize this tag through the application.
       </small>
       <%= form.text_field 'serie_a_team', 
             value: @player.serie_a_team, 

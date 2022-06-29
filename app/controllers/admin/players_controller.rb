@@ -7,7 +7,7 @@ class Admin::PlayersController < Admin::AdminController
 
   # GET /player
   def index
-    @players = Player.all
+    @players = Player.all.order(role: :desc).order(:name)
   end
 
   # GET /players/1

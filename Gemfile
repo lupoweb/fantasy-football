@@ -57,6 +57,8 @@ gem 'simplecov', require: false, group: :test
 # Authorization
 gem "action_policy"
 
+gem 'roo'
+
 # Enable gzip compression on Heroku
 gem 'heroku-deflater', :group => :production
 
