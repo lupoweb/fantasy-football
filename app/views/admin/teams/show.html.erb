@@ -18,7 +18,7 @@
       </dl>
       <dl class="mb-4">
         <dt class="">Name</dt>
-        <dd class="fs-small text-muted m-0">Business ID : helps your teammates to identify this team</dd>
+        <dd class="fs-small text-muted m-0">Business Name</dd>
         <dd class=""><%= @team.name.present? ? @team.name : '<not set>' %></dd>
       </dl>
 
@@ -27,7 +27,7 @@
         <dd class="fs-small text-muted m-0">How user will see this team</dd>
         <dd class=""><%= @team.owner.present? ? @team.owner : '<not set>' %></dd>
       </dl>
-
+      
       <%= link_to 'Edit', edit_admin_team_path(@team), class: "btn btn-primary btn btn-dark btn-sm px-3" %>
       <%= link_to 'Back', admin_teams_path, class: "btn bg-white btn-sm px-3" %>
     </div>

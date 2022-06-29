@@ -2,8 +2,9 @@ class Admin::TeamsController < Admin::AdminController
 
   # Each and every action must be authorized
   before_action :authorize!
-
   before_action :set_team, only: %i[ show edit update destroy ]
+  
+  helper_method :diff_credit
 
   # GET /teams
   def index
@@ -51,6 +52,10 @@ class Admin::TeamsController < Admin::AdminController
     redirect_to admin_teams_url, notice: "Team was successfully destroyed."
   end
 
+  def diff_credit(credits, team_id)
+    credits - Player.where(team_id: team_id).map(&:paid_price).sum
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
@@ -59,8 +64,7 @@ class Admin::TeamsController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params_h = params.require(:team).permit(:name, :owner).to_h.deep_symbolize_keys
+      params_h = params.require(:team).permit(:name, :owner, :credit, :image_url).to_h.deep_symbolize_keys
       params_h
-    end
-  
+    end 
 end

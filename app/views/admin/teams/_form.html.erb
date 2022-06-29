@@ -8,7 +8,6 @@
       <% is_invalid_name = !!errors_h[:name]  %>
       <%= form.label "name-input", 'name *', class: "mb-0 fw-600" %>
       <small id="hint_id_name" class="form-text text-muted d-block my-0">
-        Required - a private, short, unique, alphanumeric name that will help to recognize this tag through the application.
       </small>
       <%= form.text_field 'name', 
             value: @team.name, 
@@ -23,7 +22,6 @@
       <% is_invalid_owner = !!errors_h[:owner]  %>
       <%= form.label "owner-input", 'owner *', class: "mb-0 fw-600" %>
       <small id="hint_id_owner" class="form-text text-muted d-block my-0">
-        Required - a private, short, unique, alphanumeric owner that will help to recognize this tag through the application.
       </small>
       <%= form.text_field 'owner', 
             value: @team.owner, 
@@ -31,6 +29,34 @@
             class: "form-control #{"is-valid" if is_valid_owner}", aria: ({ invalid: is_invalid_owner, describedby: "owner_message" } if triggered_validation) %> 
       <%= content_tag(:span, errors_h[:owner][0], class: "invalid-feedback", id: "owner_message") if errors_h[:owner].present? %>
       <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "owner_message") if (is_valid_owner)  %>
+    </div>
+
+    <div class="form-group mb-1">
+      <% is_valid_credit = triggered_validation && errors_h[:credit].blank? && @team.credit.present?  %>
+      <% is_invalid_credit = !!errors_h[:credit]  %>
+      <%= form.label "credit-input", 'credit *', class: "mb-0 fw-600" %>
+      <small id="hint_id_credit" class="form-text text-muted d-block my-0">
+      </small>
+      <%= form.text_field 'credit', 
+            value: @team.credit, 
+            id: "credit-input", 
+            class: "form-control #{"is-valid" if is_valid_credit}", aria: ({ invalid: is_invalid_credit, describedby: "credit_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:credit][0], class: "invalid-feedback", id: "credit_message") if errors_h[:credit].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "credit_message") if (is_valid_credit)  %>
+    </div>
+
+    <div class="form-group mb-1">
+      <% is_valid_image_url = triggered_validation && errors_h[:image_url].blank? && @team.image_url.present?  %>
+      <% is_invalid_image_url = !!errors_h[:image_url]  %>
+      <%= form.label "image_url-input", 'image_url *', class: "mb-0 fw-600" %>
+      <small id="hint_id_image_url" class="form-text text-muted d-block my-0">
+      </small>
+      <%= form.text_field 'image_url', 
+            value: @team.image_url, 
+            id: "image_url-input", 
+            class: "form-control #{"is-valid" if is_valid_image_url}", aria: ({ invalid: is_invalid_image_url, describedby: "image_url_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:image_url][0], class: "invalid-feedback", id: "image_url_message") if errors_h[:image_url].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "image_url_message") if (is_valid_image_url)  %>
     </div>
 
   <div class="justify-content-between">

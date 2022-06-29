@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_120736) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_29_124254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_120736) do
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "paid_price"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -119,6 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_120736) do
     t.string "owner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "credit"
+    t.string "image_url"
   end
 
   add_foreign_key "account_login_change_keys", "accounts", column: "id"

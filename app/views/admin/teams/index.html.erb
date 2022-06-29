@@ -13,24 +13,30 @@
     <table class="table admin-table-index">
       <thead>
         <tr>
-          <th class="d-none d-sm-table-cell">Id</th>
+          <th>Image</th>
           <th>Name</th>
           <th class="d-none d-lg-table-cell">Owner</th>
+          <th class="d-none d-lg-table-cell">Remaining Credit</th>          
           <th colspan="3"></th>
         </tr>
       </thead>
       <tbody>
         <% @teams.each do |team| %>
           <tr>
-            <td class="d-none d-sm-table-cell">
-              <%= team.id %>
+            <td>
+              <%if team.image_url %>
+                <%=image_tag team.image_url, :style => "border-radius: 50%; max-height:50px" %>
+              <%end%>
             </td>
             <td>
               <%= team.name %>
             </td>                  
             <td class="d-none d-lg-table-cell">
               <%= team.owner %>
-            </td>                  
+            </td>              
+            <td class="d-none d-lg-table-cell">
+              <%= diff_credit(team.credit, team.id) %>
+            </td>     
             <td>
               <div class="d-flex d-flex justify-content-end">
                 <%= link_to [:admin, team], :class => "d-flex justify-content-center align-items-center btn btn-sm btn-ghost ms-1 " do %>
