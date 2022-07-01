@@ -18,10 +18,6 @@ Rails.application.routes.draw do
     resource :migrate_data, only: [:edit, :update, :show]
     resource :versions, only: [:show]
     # CRUD our data
-    resources :accounts
-    resources :articles
-    resources :editables
-    resources :tags
     resources :teams
     resources :players
     # Settings accessible to non-techies
@@ -42,17 +38,6 @@ Rails.application.routes.draw do
   # Routes are protected under app/misc/rodauth_app.rb
   mount Sidekiq::Web => '/admin/monitor/jobs', :as => 'sidekiq'
   mount RailsDb::Engine => '/admin/monitor/db', :as => 'rails_db'
-
-  # Public pages
-  get "home/index"
-  root to: "home#index"
-  get "terms", to: "page#terms"
-  get "about", to: "page#about"
-  get "faq", to: "page#faq"
-  get "credits", to: "page#credits"
-  get "styleguide", to: "page#styleguide"
-  get "pricing", to: "page#pricing"
-  get "changelog", to: "page#changelog"
 
   # Blog
   namespace :blog do
