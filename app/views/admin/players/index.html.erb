@@ -14,12 +14,13 @@
       <thead>
         <tr>
           <th class="d-none d-sm-table-cell">Id</th>
+          <th class="d-none d-lg-table-cell">Image</th>
           <th>Name</th>
           <th class="d-none d-lg-table-cell">Role</th>
           <th class="d-none d-lg-table-cell">Serie A Team</th>
           <th class="d-none d-lg-table-cell">Team</th>
           <th class="d-none d-lg-table-cell">Quote</th>
-          <th colspan="6"></th>
+          <th colspan="7"></th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,11 @@
             <td class="d-none d-sm-table-cell">
               <%= player.id %>
             </td>
+            <td>
+              <%if player.img_url %>
+                <%=image_tag player.img_url, :style => "border-radius: 50%; max-height:50px" %>
+              <%end%>
+            </td>   
             <td>
               <%= player.name %>
             </td>                  
@@ -38,10 +44,12 @@
               <%= player.serie_a_team %>
             </td>
             <td class="d-none d-lg-table-cell">
-              <%= player.team_id %>
+              <%if player.team_id != nil%>
+                <%= Team.find(player.team_id).name%>
+              <%end%>
             </td> 
             <td class="d-none d-lg-table-cell">
-              <%= player.actual_quote %>
+              <%= player.initial_quote %>
             </td>                                                     
             <td>
               <div class="d-flex d-flex justify-content-end">

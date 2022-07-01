@@ -59,6 +59,14 @@ gem "action_policy"
 
 gem 'roo'
 
+gem 'openssl'
+
+gem 'uri'
+
+gem 'net-http'
+
+gem 'json', '~> 2.6', '>= 2.6.2'
+
 # Enable gzip compression on Heroku
 gem 'heroku-deflater', :group => :production
 

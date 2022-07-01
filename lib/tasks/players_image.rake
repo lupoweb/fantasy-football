@@ -1,0 +1,32 @@
+require 'uri'
+require 'net/http'
+require 'openssl'
+require 'json'
+
+namespace :players_image do
+  desc "Import Images From rapid API" 
+  task data: :environment do
+    Player.where(img_url: nil).map do |player|
+      url = URI("https://transfermarket.p.rapidapi.com/search?query=#{player.name}")
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Get.new(url)
+      request["X-RapidAPI-Key"] = '4c99641e29msh9800c622f9eaddfp161479jsn148aa74123ea'
+      request["X-RapidAPI-Host"] = 'transfermarket.p.rapidapi.com'
+      response = http.request(request)
+      code = response.code
+
+      result = JSON.parse(response.body)
+
+      if result["players"]
+        player.img_url = result["players"].first["playerImage"] || ""
+        player.save!
+      end 
+
+      #if result["players"] != nil && (code == 201 || code = 200)
+      # Player.create!(name: player_data["Nome"], initial_quote: player_data["Qt. A"], serie_a_team: player_data["Squadra"], role: player_data["R"], img_url: result["players"].first["playerImage"] || "")
+      #end
+    end  
+  end 
+end 

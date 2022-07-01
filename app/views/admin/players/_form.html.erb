@@ -76,6 +76,24 @@
       <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "serie_a_team_message") if (is_valid_serie_a_team)  %>
     </div>
 
+    <div class="form-group mb-1">
+      <% is_valid_paid_price = triggered_validation && errors_h[:paid_price].blank? && @player.paid_price.present?  %>
+      <% is_invalid_paid_price = !!errors_h[:paid_price]  %>
+      <%= form.label "paid_price-input", 'paid_price *', class: "mb-0 fw-600" %>
+      <small id="hint_id_paid_price" class="form-text text-muted d-block my-0">
+      </small>
+      <%= form.text_field 'paid_price', 
+            value: @player.paid_price, 
+            id: "paid_price-input", 
+            class: "form-control #{"is-valid" if is_valid_paid_price}", aria: ({ invalid: is_invalid_paid_price, describedby: "paid_price_message" } if triggered_validation) %> 
+      <%= content_tag(:span, errors_h[:paid_price][0], class: "invalid-feedback", id: "paid_price_message") if errors_h[:paid_price].present? %>
+      <%= content_tag(:span, 'looks good !', class: "valid-feedback", id: "paid_price_message") if (is_valid_paid_price)  %>
+    </div>
+    
+    <div class="form-group mb-1">
+      <%=form.collection_select :team_id, @teams, :id, :name%>
+    </div>
+
   <div class="justify-content-between">
     <div class="my-4">
       <%= form.submit class: 'btn btn-primary btn btn-dark btn-sm px-2 me-2' %>

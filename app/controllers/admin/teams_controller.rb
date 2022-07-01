@@ -13,6 +13,7 @@ class Admin::TeamsController < Admin::AdminController
 
   # GET /teams/1
   def show
+    @players = Player.where(team_id: @team.id).order(role: :desc).order(:name)
   end
 
   # GET /teams/new

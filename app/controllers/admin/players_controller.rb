@@ -21,6 +21,7 @@ class Admin::PlayersController < Admin::AdminController
 
   # GET /players/1/edit
   def edit
+    @teams = Team.all.order(:id).order(:name)
   end
 
   # POST /players
@@ -59,7 +60,7 @@ class Admin::PlayersController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def player_params
-      params_h = params.require(:player).permit(:name, :initial_quote, :actual_quote, :serie_a_team, :team_id, :diff, :role).to_h.deep_symbolize_keys
+      params_h = params.require(:player).permit(:name, :initial_quote, :actual_quote, :serie_a_team, :team_id, :diff, :role, :paid_price).to_h.deep_symbolize_keys
       params_h
     end
 end

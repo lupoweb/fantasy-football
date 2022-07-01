@@ -9,28 +9,74 @@
       <%= render 'actions', being: 'show', team: @team %>
     </div>
   </div>
-  <div class="card p-3 p-lg-4 flex-column justify-content-center align-items-between mb-2">
-    <div class="container-fluid">
-      <dl class="mb-4">
-        <dt class="">Id</dt>
-        <dd class="fs-small text-muted m-0">Technical ID in the database</dd>
-        <dd class=""><%= @team.id %></dd>
-      </dl>
-      <dl class="mb-4">
-        <dt class="">Name</dt>
-        <dd class="fs-small text-muted m-0">Business Name</dd>
-        <dd class=""><%= @team.name.present? ? @team.name : '<not set>' %></dd>
-      </dl>
-
-      <dl class="mb-4">
-        <dt class="">Owner</dt>
-        <dd class="fs-small text-muted m-0">How user will see this team</dd>
-        <dd class=""><%= @team.owner.present? ? @team.owner : '<not set>' %></dd>
-      </dl>
-      
-      <%= link_to 'Edit', edit_admin_team_path(@team), class: "btn btn-primary btn btn-dark btn-sm px-3" %>
-      <%= link_to 'Back', admin_teams_path, class: "btn bg-white btn-sm px-3" %>
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-3">  
+        <dl class="mb-3">
+          <%if @team.image_url %>
+            <%=image_tag @team.image_url, :style => "border-radius: 35%; margin-top: 10px; margin-left: 10px" %>
+          <%end%>
+        </dl>
+      </div>
+      <div class="col-md-2" style=" margin-top: 10px">
+        <dl class="mb-2">
+          <dt class="">Name</dt>
+          <dd class=""><%= @team.name.present? ? @team.name : '<not set>' %></dd>
+        </dl>
+      </div>
+      <div class="col-md-2" style="margin-top: 10px">
+        <dl class="mb-3">
+          <dt class="">Owner</dt>
+          <dd class=""><%= @team.owner.present? ? @team.owner : '<not set>' %></dd>
+        </dl>
+      </div>
+      <div class="col-md-2" style="margin-top: 10px">
+        <dl class="mb-3">
+          <dt class="">Remaining Ctredit </dt>
+          <dd class=""><%= diff_credit(@team.credit, @team.id) %></dd>
+        </dl>
+      </div>
+      </div>
+    </div>
+    <div class="container" style="margin-bottom: 10px; margin-top: 10px">
+      <%= link_to 'Edit', edit_admin_team_path(@team), class: "btn btn-primary btn btn-dark ", style: "height: 35px; width: 70px" %>
+      <%= link_to 'Back', admin_teams_path, class: "btn bg-white btn-sm px-3", style: "margin-left:10px; height: 35px; width: 70px" %>
     </div>
   </div>
+  <div class="card p-0 p-sm-3 p-lg-4 flex-column justify-content-center align-items-between mb-2" style="margin-left: 20px">
+    <table class="table admin-table-index">
+      <thead>
+        <tr>
+          <th class="d-none d-lg-table-cell">Image</th>
+          <th>Name</th>
+          <th class="d-none d-lg-table-cell">Role</th>
+          <th class="d-none d-lg-table-cell">Serie A Team</th>
+          <th colspan="7"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @players.map do |player| %>
+          <tr>
+            <td>
+              <%if player.img_url %>
+                <%=image_tag player.img_url, :style => "border-radius: 50%; max-height:50px" %>
+              <%end%>
+            </td>   
+            <td>
+              <%= player.name %>
+            </td>                  
+            <td class="d-none d-lg-table-cell">
+              <%= player.role %>
+            </td>
+             <td class="d-none d-lg-table-cell">
+              <%= player.serie_a_team %>
+            </td>
+            <td class="d-none d-lg-table-cell">
+              <%= player.actual_quote %>
+              </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div>
 
