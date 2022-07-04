@@ -1172,20 +1172,6 @@ Player.create!(
   img_url: "https://img.a.transfermarkt.technology/portrait/medium/197929-1647942320.jpg?lm=1")
 
 
-  #<Player:0x000000010e92b058
-  id: 841,
-  role: "D",
-  name: "DEMIRAL",
-  initial_quote: 8,
-  actual_quote: nil,
-  diff: nil,
-  serie_a_team: "Atalanta",
-  team_id: nil,
-  created_at: Thu, 30 Jun 2022 15:36:53.520706000 UTC +00:00,
-  updated_at: Thu, 30 Jun 2022 16:04:37.160825000 UTC +00:00,
-  paid_price: nil,
-  img_url: "https://img.a.transfermarkt.technology/portrait/medium/340879-1655706148.jpg?lm=1")
-
  Player.create!(
   role: "D",
   name: "ANSALDI",

@@ -39,12 +39,6 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/admin/monitor/jobs', :as => 'sidekiq'
   mount RailsDb::Engine => '/admin/monitor/db', :as => 'rails_db'
 
-  # Blog
-  namespace :blog do
-    resources :tags, only: [:index, :show]
-  end
-  resources :blog, only: [:index, :show]
-
   # Test-mode only routes
   get "/get_last_email", to: "test#get_last_email" if Rails.env.test?
 end

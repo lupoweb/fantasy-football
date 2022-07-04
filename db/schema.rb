@@ -49,35 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_143337) do
     t.index ["email"], name: "index_accounts_on_email", unique: true, where: "((status)::text = ANY ((ARRAY['unverified'::character varying, 'verified'::character varying])::text[]))"
   end
 
-  create_table "articles", force: :cascade do |t|
-    t.string "slug"
-    t.text "kontent"
-    t.string "title"
-    t.text "description"
-    t.text "image_url"
-    t.datetime "publication_date"
-    t.boolean "is_published", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "editables", force: :cascade do |t|
-    t.string "shortname"
-    t.text "kontent"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "markers", force: :cascade do |t|
-    t.bigint "article_id", null: false
-    t.bigint "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_markers_on_article_id"
-    t.index ["tag_id"], name: "index_markers_on_tag_id"
-  end
-
   create_table "players", force: :cascade do |t|
     t.string "role"
     t.string "name"
@@ -108,14 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_143337) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "shortname"
-    t.string "display_name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "owner"
@@ -130,6 +93,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_143337) do
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_remember_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
-  add_foreign_key "markers", "articles"
-  add_foreign_key "markers", "tags"
 end
