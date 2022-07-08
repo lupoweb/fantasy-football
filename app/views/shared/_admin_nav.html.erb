@@ -1,31 +1,40 @@
-<nav class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-  <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 text-white min-vh-100">
-    <div class="dropdown mb-1">
-      
-      <%= image_tag "Logo-Fantacalcio.png", style: 'height:36; width:36px; margin-right: 0px;' %>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" style="color:red">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="">      <%= image_tag "Logo-Fantacalcio.png", style: 'height:36; width:36px; margin-right: 0px; border-radius: 50px' %>
       <!--<svg width="26px" height="26px" viewBox="0 0 102 102" version="1.1"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="rubyshape2"> <rect id="Rectangle" stroke="#979797" fill="#FFFFFF" x="0.5" y="0.5" width="101" height="101" rx="13"></rect> <polygon id="railslike" stroke="#000000" fill="#1E2029" fill-rule="nonzero" transform="translate(51.500000, 51.000000) rotate(-180.000000) translate(-51.500000, -51.000000) " points="51.5 24 81 61.6835734 69.7320027 78 33.2679973 78 22 61.6835734"></polygon> </g> </g> </svg>-->
-      <span class="d-none d-sm-inline mx-1 fw-700 ms-1 text-white" style="margin-left: 0px"> antaBaretto</span>
-    
-      <!--<ul class="dropdown-menu dropdown-menu-dark fs-small shadow">
-        <li><a class="dropdown-item" href="/">Back to app</a></li>
-        <li>
-          <hr class="dropdown-divider">
+      <span class="d-none d-sm-inline mx-1 fw-700 ms-1 text-white" style="margin-left: 0px;font-family: Chalkduster"> antaBaretto</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item mt-1" style="margin-left: 25px">
+          <a href="/admin/teams" class="nav-link nav-link--teams align-middle px-0 <%= controller_name == 'teams' ? 'is-active' : '' %>">
+            <span class="ms-2 fw-600 d-none d-sm-inline">Teams</span>
+          </a>
         </li>
-        <li><a class="dropdown-item" href="/login">Connect as...</a></li>
-      </ul>-->
+        <li class="nav-item mt-1" style="margin-left: 25px">
+          <a href="/admin/players" class="nav-link nav-link--players align-middle px-0 <%= controller_name == 'players' ? 'is-active' : '' %>">
+            <span class="ms-2 fw-600 d-none d-sm-inline">Players</span>
+          </a>
+        </li>
+      </ul> 
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="ms-2 fw-600 d-none d-sm-inline mx-1"><%= Account.find(current_account.profile.id).email %></span>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="z-index: 10">
+        <li>
+          <%= form_with url: rodauth.logout_path, method: :post, data: { turbo: false } do |form| %>
+            <%= form.submit rodauth.logout_button, class: "dropdown-item" %>
+          <% end %>
+        </li>
+      </ul>
+      <% if controller_name == 'players' %>
+        <%= form_tag(admin_players_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search]) %>
+          <%= submit_tag ("Search")%>
+        <% end %>
+      <% end %>
     </div>
-    <hr class="w-100" style="height:2px; color:grey;">
-    <ul class="ms-1 mt-1 nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-      <li class="nav-item mt-1">
-        <a href="/admin/teams" class="nav-link nav-link--teams align-middle px-0 <%= controller_name == 'teams' ? 'is-active' : '' %>">
-          <span class="ms-2 fw-600 d-none d-sm-inline">Teams</span>
-        </a>
-      </li>
-      <li class="nav-item mt-1">
-        <a href="/admin/players" class="nav-link nav-link--players align-middle px-0 <%= controller_name == 'players' ? 'is-active' : '' %>">
-          <span class="ms-2 fw-600 d-none d-sm-inline">Players</span>
-        </a>
-      </li>
-    </ul>
   </div>
 </nav>

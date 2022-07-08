@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "home/index"
+  root to: "home#index"
   # Sitemap
   get '/sitemap.xml' => 'sitemaps#index', defaults: { format: 'xml' }
 
@@ -19,20 +21,12 @@ Rails.application.routes.draw do
     resource :versions, only: [:show]
     # CRUD our data
     resources :teams
+    resources :accounts
     resources :players
     # Settings accessible to non-techies
     resources :settings, only: [:index, :update]
     # Home page of the admin
     root :to => "admin#index"
-  end
-
-  # Customer dashboard
-  namespace :profile do
-    root :to => "names#show"
-    resource :name, only: [:show, :update]
-    resource :danger, only: [:show]
-    resource :preference, only: [:show, :update]
-    resource :billing, only: [:show]
   end
   
   # Routes are protected under app/misc/rodauth_app.rb

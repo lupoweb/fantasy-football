@@ -7,7 +7,7 @@ class Admin::PlayersController < Admin::AdminController
 
   # GET /player
   def index
-    @players = Player.all.order(role: :desc).order(:name)
+    @players = Player.search(params[:search]).order(role: :desc).order(:name)
   end
 
   # GET /players/1
@@ -60,7 +60,7 @@ class Admin::PlayersController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def player_params
-      params_h = params.require(:player).permit(:name, :initial_quote, :actual_quote, :serie_a_team, :team_id, :diff, :role, :paid_price).to_h.deep_symbolize_keys
+      params_h = params.require(:player).permit(:name, :initial_quote, :actual_quote, :serie_a_team, :team_id, :diff, :role, :paid_price, :search).to_h.deep_symbolize_keys
       params_h
     end
 end
