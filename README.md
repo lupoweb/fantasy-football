@@ -1,7 +1,7 @@
 # README
 
 
-## Prerequisites
+## Prerequisites Fantasy Football App Using bootrails Template
 
 ```
 $> ruby -v  
@@ -31,43 +31,29 @@ $> redis-server -v
 
 Any upper version should work
 
-
-## Install files
-
-Unzip and copy/paste the "bootrails" directory on you computer.
-
-Now you should have the bootrails app, for example, under `~/workspace/bootrails`
-
-
-## Initialize git
-
-```
-$/bootrails> git init
-```
-
-
-## (Optional) Rename the application
-
-Maybe you want a more custom name for you app.
-
-By default, the app is called "bootrails".
-
-If you want to rename it, please read https://www.bootrails.com/blog/how-to-rename-a-rails-app/
+on folder: 
+ git init
 
 
 ## How to install the application locally
 
 ```
-$/bootrails> yarn
-$/bootrails> bundle install 
-$/bootrails> bin/rails db:create db:migrate db:seed
+ yarn
+ bundle install 
+ bin/rails db:create db:migrate db:seed
 ```
 
 
 ## How to develop features locally
 
 ```
-$/bootrails> foreman start -f Procfile.dev
+ foreman start -f Procfile.dev
+```
+
+OR 
+
+```
+rails s 
 ```
 
 This will start vite server (for the frontend assets) and local Rails server.
@@ -250,27 +236,6 @@ By default, there are 2 users inside your app :
 
 Create a new administrator, with a real e-mail, and delete the 2 default users, for security purposes.
 
-### Search for help
-
-You should now enjoy a fully working Ruby-on-Rails application. 
-
-If anything is not working, try to reach us by email, or use the GitHub repository dedicated to the discussions and issues : https://github.com/bdavidxyz/bootrails_place
-
-
-## Extend the customer /profile pages
-
-Don't rely on Rails scaffolders. We have tried to modify them, in order to match Bootrails views and controllers, but it quickly appeared to be very inefficient. Too much small differences between screens made impossible to generalise this approach.
-
-Instead, find the screen that is close to your need, and copy/paste/modify views and controllers accordingly.
-
-Note that `app/views/shared/_profile_secondary_nav.html.erb` contains the navigation between profile items.
-
-
-## Extend the /admin pages
-
-Again, don't rely on Rails scaffolders, and copy/paste existing views and controllers according to your needs.
-
-Note that `app/views/shared/_admin_nav.html.erb` contains the navigation between admin items.
 
 
 
@@ -284,9 +249,6 @@ However, it is important to take time to understand how Action Mailer work, beca
 
 Authentication alone requires email to work properly.
 
-If you are not comfortable with Action Mailer, here is an article we wrote, it's also how we installed Action Mailer :
-
-https://www.bootrails.com/blog/action-mailer-tutorial/
 
 
 ### Old assets (CSS, JS...) pipeline

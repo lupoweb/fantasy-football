@@ -12,7 +12,7 @@ namespace :players_image do
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request = Net::HTTP::Get.new(url)
-      request["X-RapidAPI-Key"] = '8878b20c07msh52297d8773985c7p1923d7jsn397596e08cb4'
+      request["X-RapidAPI-Key"] = ''
       request["X-RapidAPI-Host"] = 'transfermarket.p.rapidapi.com'
       response = http.request(request)
       code = response.code
